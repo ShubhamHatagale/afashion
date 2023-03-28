@@ -1,0 +1,1424 @@
+
+                                        <div class="col-md-3">
+                                            <label for="inputEmail4">Select Material Colour</label>
+                                            <select class="form-control" id="colour_id" name="firms">
+                                                <?php
+                                                include 'config.php';
+
+                                                $selectquery = "select * from colors";
+
+                                                $query = mysqli_query($conn, $selectquery);
+
+                                                $nums = mysqli_num_rows($query);
+
+                                                while ($res = mysqli_fetch_array($query)) {
+
+                                                ?>
+                                                    <option value="<?php echo $res['id'] . $res['name']; ?>"><?php echo $res['name']; ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="inputEmail4">Select Material Size</label>
+                                            <select class="form-control" id="size_id" name="firms">
+                                                <?php
+                                                include 'config.php';
+
+                                                $selectquery = "select * from sizes";
+
+                                                $query = mysqli_query($conn, $selectquery);
+
+                                                $nums = mysqli_num_rows($query);
+
+                                                while ($res = mysqli_fetch_array($query)) {
+                                                ?>
+                                                    <!-- <option value="0"></option> -->
+                                                    <option value="<?php echo $res['id'] . "-" . $res['name']; ?>"><?php echo $res['name']; ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <!-- <script>
+        const formEl = document.querySelector("form");
+        const tbodyEl = document.querySelector("tbody");
+        const tableEl = document.querySelector("table");
+        const tt = document.getElementById("displayTotal");
+
+        function addRow() {
+            const prod_code = document.getElementById("prod_code").value;
+            const prod_name = document.getElementById("prod_name").value;
+            const invoice = document.getElementById("invoice").value;
+            let prod_qty = parseInt(document.getElementById("prod_qty").value);
+            let purchase_price = parseInt(document.getElementById("purchase_price").value);
+            let sale_price = parseInt(document.getElementById("sale_price").value);
+            let total = parseInt(document.getElementById("total").value);
+
+            for (let a = 1; a <= prod_qty; a++) {
+                total = total + purchase_price;
+                tbodyEl.innerHTML += `
+            <tr>
+            <td><input type="hidden" name="invoice[]" value="${invoice}"/>${invoice}</td>
+            <td><input type="hidden" name="prod_code[]" value="${prod_code}"/>${prod_code}</td>
+            <td><input type="hidden" name="prod_name[]" value="${prod_name}"/>${prod_name}</td>
+            <td><input type="hidden" name="prod_qty[]" value="1"/>1</td>
+            <td><input type="hidden" name="purchase_price[]" value="${purchase_price}"/>${purchase_price}</td>
+            <td><input type="hidden" name="sale_price[]" value="${sale_price}"/>${sale_price}</td>
+            <td><button type="button" id="addVariation" class="btn btn-success" onclick="addVariation()">Add Variation</button></td>
+            <td><button type="button" class="deleteBtn btn btn-danger" onclick="deleterow()">Delete</button></td>
+            </tr>
+        `;
+            }
+            document.getElementById("total").value = total;
+        }
+
+        
+        function addVariation(){
+            alert("shuham");
+        }
+        function deleterow(e) {
+            if (!e.target.classList.contains("deleteBtn")) {
+                return;
+            }
+
+            const btn = e.target;
+            btn.closest("tr").remove();
+        }
+
+        
+    </script> -->
+
+
+
+
+
+
+
+
+
+
+    //         function addVariation(){
+//             alert("shuham");
+//         }
+//         function deleterow(e) {
+//             if (!e.target.classList.contains("deleteBtn")) {
+//                 return;
+//             }
+
+//             const btn = e.target;
+//             btn.closest("tr").remove();
+//         }
+
+
+
+import---nt
+
+// "<tr id='row'" +
+                // rowid +
+                // "'><td>" +
+                // rowid +
+                // "</td><td>" +
+                // invoice +
+                // "</td><td>" +
+                // prod_code +
+                // "</td><td>" +
+                // prod_name +
+                // "</td> <td>" +
+                // prod_qty +
+                // "</td><td>" +
+                // purchase_price +
+                // "</td><td>" +
+                // sale_price +
+                // "</td><td><button type='button' class='deleteBtn btn btn-success' onclick='addVariation(" +
+                // rowid +
+                // ")'>Add Variation</button></td><td>" +
+                // total +
+                // "</td></tr>"
+
+
+
+
+
+                let table = document.getElementById("tableid"),sumVal=0;
+            for(let i=1;  i<table.rows.length; i++){
+                sumVal=sumVal + parseInt(table.rows[i].cells[8].innerHTML);
+            }
+            document.getElementById("val").innerHTML = "sum value = " +sumVal;
+            alert(sumVal);
+            document.getElementById("allTotal").value = sumVal;
+
+
+
+
+             $sql = "INSERT INTO purchase(fid,invoice,date,suppliers,total,prod_code,prod_qty,purchase_price,sale_price,allTotal,colorId,sizeId,qty) VALUES('$fid','$invoice','$date','$suppliers','$total','$prod_code','$prod_qty','$purchase_price','$sale_price','$allTotal','$colorId','$sizeId','$qty')";
+
+    $result = mysqli_query($conn, $sql);
+
+    if($result){
+        ?>
+        <script>
+        alert("user added successfully");
+        location.replace("employee.php")
+        </script>
+        <?php
+    }else{
+        echo "you have entered wrong email or passsword";
+    }
+
+
+
+all scripts----------------------------->>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+<script>
+        function addRow() {
+            let prod_code = document.getElementById("prod_code").value;
+            let prod_name = document.getElementById("prod_name").value;
+            let invoice = document.getElementById("invoice").value;
+            let prod_qty = parseInt(document.getElementById("prod_qty").value);
+            let purchase_price = parseInt(
+                document.getElementById("purchase_price").value
+            );
+            let sale_price = parseInt(document.getElementById("sale_price").value);
+            let total = prod_qty * purchase_price;
+            // let total=prod_qty * purchase_price;
+            let rowid = parseInt(document.getElementById("rowid").value);
+            // alert(total);
+
+
+
+            $("#tableid").append(
+                "<tr id='row'" +
+                rowid +
+                "'><td>" +
+                rowid +
+                "</td><td>" +
+                invoice +
+                "</td><td>" +
+                prod_code +
+                "</td><td>" +
+                prod_name +
+                "</td> <td>" +
+                prod_qty +
+                "</td><td>" +
+                purchase_price +
+                "</td><td>" +
+                sale_price +
+                "</td><td><button type='button' class='deleteBtn btn btn-success' onclick='addVariation(" +
+                rowid +
+                ")'>Add Variation</button></td><td>" +
+                total +
+                "</td><td><button type='button' class='deleteBtn btn btn-danger' onclick='rowDelete()' >Delete</button></td></tr>"
+            );
+            rowid = rowid + 1;
+            document.getElementById("rowid").value = rowid;
+            // }
+
+            let table = document.getElementById("tableid"),
+                sumVal = 0;
+            for (let i = 1; i < table.rows.length; i++) {
+                sumVal = sumVal + parseInt(table.rows[i].cells[8].innerHTML);
+            }
+            // document.getElementById("val").innerHTML = "sum value = " + sumVal;
+            // alert(sumVal);
+            document.getElementById("allTotal").value = sumVal;
+        }
+
+
+        // add Variation Scripts----->>>>
+        let mid;
+
+        function addVariation(rowid) {
+            // alert(rowid);
+            $("#myModal").modal("show");
+            mid = rowid;
+            var tbl = document.getElementById("modTableid");
+            var mcount = tbl.rows.length - 1;
+            // alert(mcount);
+            let miiid;
+            if (mcount > 0) {
+                for (i = 1; i <= mcount; i++) {
+                    // miiid is the id for every row added in variation
+                    miiid = tbl.rows[i].cells[0].innerHTML;
+                    // alert(miiid);
+                    // if (rowid == miiid) {
+                    //     // alert("show ");
+                    //     tbl.rows[i].cells[0].style.display = "block";
+                    //     tbl.rows[i].cells[1].style.display = "block";
+                    //     tbl.rows[i].cells[2].style.display = "block";
+                    //     tbl.rows[i].cells[3].style.display = "block";
+                    //     tbl.rows[i].cells[4].style.display = "block";
+                    // } else {
+                    //     tbl.rows[i].cells[0].style.display = "none";
+                    //     tbl.rows[i].cells[1].style.display = "none";
+                    //     tbl.rows[i].cells[2].style.display = "none";
+                    //     tbl.rows[i].cells[3].style.display = "none";
+                    //     tbl.rows[i].cells[4].style.display = "none";
+                    //     // alert("none ");
+                    // }
+                }
+            } 
+            // else {
+            //     // alert("no data");
+            // }
+        }
+
+
+        // const rowDelete = () => {
+        //     let rowCount = $('#tableid tr').length - 1;
+        //     $(this).closest('tr').remove();
+        // }
+
+        //  in model adding rows of variations on click add  
+        $(document).ready(function() {
+            $("#modelAdd").click(function() {
+                // alert(rowid);
+                let prod_qty = parseInt(document.getElementById("prod_qty").value);
+                // let total = parseInt(document.getElementById("total").value);
+                let colorId = (document.getElementById("colour_id").value);
+                let sizeId = (document.getElementById("size_id").value);
+                let qty = parseInt(document.getElementById("qty").value);
+                let purchase_price = parseInt(document.getElementById("purchase_price").value);
+                let modrowid = parseInt(document.getElementById("modrowid").value);
+
+                // let rowCount = $('#modelTbody tr').length;
+                
+                // if (rowid == mid) {
+                //     alert("yes");
+                // } else {
+                //     alert("no");
+                // }
+                // alert(mid);
+                for (let a = 1; a <= qty; a++) {
+                    let rowCount = $('#modelTbody tr').length + 1;
+
+                    // alert(prod_qty);
+                    alert(rowCount);
+                    if (prod_qty < rowCount) {
+                        alert("you have entered wrong limits");
+                    } else {
+
+                        $("#modelTbody").append(`
+            <tr id=${modrowid}>
+            <td >${modrowid}</td>
+            <td>${colorId}</td>
+            <td><input type="hidden" name="sizeId[]" value="${sizeId}"/>${sizeId}</td>
+            <td><input type="hidden" name="qty[]" value="${qty}"/>1</td>
+            <td><button type="button" id='deleteMRow' class="deleteBtn btn btn-danger">Delete</button></td>
+            </tr>
+        `)
+                        alert("success");
+                    }
+                    // let rowCount = $('#modelTbody tr').length;
+                    // // alert(prod_qty);
+                    // alert(rowCount);
+                    // if (prod_qty < rowCount) {
+                    //     alert("you have entered wrong limits");
+                    // } else {
+                    //     alert("success");
+                    // }
+                }
+
+                // if (prod_qty != qty) {
+                //     alert("enter qty under the product qty");
+                // }
+                // let modTotal = parseInt(document.getElementById("modTotal").value);
+                // modTotal = modTotal * purchase_price;
+
+                $('#modelTbody').on('click', '#deleteMRow', function() {
+                    let rowCount = $('#modelTbody tr').length - 1;
+                    $(this).closest('tr').remove();
+                    // alert(rowCount);
+                })
+
+                // $("#deleteMRow").click(function() {
+                //     alert("delete id funcn");
+                // })
+
+
+            })
+        });
+
+        // function deleteMRow() {
+        //     alert("delete id");
+        // }
+    </script>
+
+
+ // echo $_POST['fid'];
+    // echo $_POST['invoice'];
+    // echo $_POST['fid'];
+    // echo $_POST['invoice'];
+
+    // echo $_POST['date'];
+    // echo $_POST['suppliers'];
+    // echo $_POST['total'];
+    // echo $_POST['prod_code'];
+    // echo $_POST['prod_qty'];
+    // echo $_POST['prod_name'];
+
+    // echo $_POST['purchase_price'];
+    // echo $_POST['sale_price'];
+    // echo $_POST['allTotal'];
+    // echo $_POST['colorId'];
+    // echo $_POST['sizeId'];
+
+    // echo '<pre>';
+    // print_r($sizeId);
+    // echo '</pre>';
+
+    // echo '<pre>';
+    // print_r($colorId);
+    // echo '</pre>';
+
+    // echo '<pre>';
+    // print_r($qty);
+    // echo '</pre>';
+
+    // echo $_POST['qty'];
+
+
+
+
+
+    // if(mysqli_query($conn, $sql)){
+    //     ?>
+    //     <script>
+    //     alert("user added successfully");
+    //     </script>
+    //     <?php
+    // }else{
+    //     echo "error";
+    // }
+
+
+
+     <div id="variationModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="row">
+                <div class="card form-row">
+                    <div class="card-header">
+                        Added Product
+                    </div>
+                    <!-- <div class="container-fluid"> -->
+                    <div class="row" style="margin-top: 20px">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title"><b>Add Purchase</b></h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table class="table table-bordered table-striped" id="tableid">
+                                        <thead>
+                                            <tr>
+                                                <th>Sr No.</th>
+                                                <!-- <th>Bill No.</th> -->
+                                                <th>Material Colour</th>
+                                                <th>Material Size</th>
+                                                <th>Material QTY</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="variationResponse">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <?php
+session_start();
+if ($_SESSION['added_by']) {
+    // echo 'welcome'.$_SESSION['added_by'];
+} else {
+    header("location:index.php");
+}
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Purchase</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <?php
+    include("scripts.php");
+    ?>
+    <!-- <script src="purchase.js"></script> -->
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <?php
+    include("sidebar.php");
+    ?>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Material Purchase</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+<li class="breadcrumb-item"><a href="firms.php">Home</a></li>                            <li class="breadcrumb-item active">Firm</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <form class="" role="form" method="POST" action="purchaseAdd_b.php" name="forms" id="formid" enctype="multipart/form-data">
+                    <!-- Firm master Register page -->
+                    <div class="row">
+                        <div class="container-fluid">
+                            <div class="card form-row">
+                                <div class="card-header">
+                                    Add Purchase
+                                </div>
+                                <div class="card-body form-row">
+                                    <div class="col-md-3">
+                                        <label for="inputEmail4">Select Firm</label>
+                                        <select class="form-control" id="fid" name="fid">
+                                            <?php
+                                            include 'config.php';
+
+                                            $selectquery = "select * from admin";
+
+                                            $query = mysqli_query($conn, $selectquery);
+
+                                            $nums = mysqli_num_rows($query);
+
+                                            while ($res = mysqli_fetch_array($query)) {
+
+                                            ?>
+                                                <option value="<?php echo $res['fname']; ?>"><?php echo $res['fname']; ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Invoice Number</label>
+                                        <input type="number" class="form-control" id="invoice" name="invoice" placeholder="invoice no.">
+                                    </div>
+
+                                    <div class="form-group  col-md-3">
+                                        <!-- Date input -->
+                                        <label class="control-label" for="date">Date</label>
+                                        <input type="date" id="date" name="date" placeholder="MM/DD/YYY" type="text" class="form-control" />
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label for="inputEmail4">Select Supplier</label>
+                                        <select class="form-control" name="suppliers" id="sid">
+                                            <?php
+                                            include 'config.php';
+
+                                            $selectquery = "select * from suppliers";
+
+                                            $query = mysqli_query($conn, $selectquery);
+
+                                            $nums = mysqli_num_rows($query);
+
+                                            while ($res = mysqli_fetch_array($query)) {
+
+                                            ?>
+                                                <option value="<?php echo $res['fname']; ?>"><?php echo $res['fname']; ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="card form-row">
+                                <div class="card-header">
+                                    Product Add
+                                </div>
+                                <div class="card-body form-row">
+                                    <div class="col-md-3">
+                                        <label for="inputEmail4">Product Code</label>
+                                        <input type="text" class="form-control" name="prod_code" id="prod_code" placeholder="Product Code">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Product Name</label>
+                                        <input type="text" class="form-control" name="prod_name" id="prod_name" placeholder="Product Name">
+                                    </div>
+
+                                    <div class="form-group  col-md-3">
+                                        <!-- Date input -->
+                                        <label class="control-label" for="date">Product Quantity</label>
+                                        <input type="number" class="form-control" id="prod_qty" name="prod_qty" placeholder="Product Quantity">
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label for="inputEmail4">Puchase Price</label>
+                                        <input type="number" class="form-control" id="purchase_price" name="purchase_price" placeholder="Purchase Price">
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label for="inputEmail4">Sale Price</label>
+                                        <input type="number" class="form-control" id="sale_price" name="sale_price" placeholder="Sale Price">
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <label for="inputEmail4"> </label>
+                                        <center> <button type="button" class="btn btn-success" onclick="addRow()">Add</button></center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card form-row">
+                            <div class="card-header">
+                                Added Product
+                            </div>
+                            <!-- <div class="container-fluid"> -->
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title"><b>Add Purchase</b></h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <table class="table table-bordered table-striped" id="tableid">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Sr No.</th>
+                                                        <!-- <th>Bill No.</th> -->
+                                                        <th>Product Code</th>
+                                                        <th>Product Name</th>
+                                                        <th>Product QTY</th>
+                                                        <th>Purchase Price</th>
+                                                        <th>Sale Price</th>
+                                                        <th>Add Variation</th>
+                                                        <th>Total</th>
+                                                        <th>Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body form-row float-right ">
+                        <div class="col-md-3">
+                            <label for="label">Total</label>
+                            <input type="number" class="form-control" id="allTotals" name="allTotals" value="0">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="inputEmail4"> &nbsp;</label>
+                            <center> <button type="button" name="submitAll" class="btn btn-success" id="submitAll">Submit All</button></center>
+                        </div>
+                    </div>
+                    <input type="hidden" class="form-control" id="allqtytotals" name="allqtytotals" value="0">
+
+                    <!-- this code for modal of adding variations -->
+                    <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="card-body form-row">
+                                    <div class="col-md-3">
+                                        <label for="inputEmail4">Select Material Colour</label>
+                                        <select class="form-control" id="colour_id" name="firms">
+                                            <?php
+                                            include 'config.php';
+
+                                            $selectquery = "select * from colors";
+
+                                            $query = mysqli_query($conn, $selectquery);
+
+                                            $nums = mysqli_num_rows($query);
+
+                                            while ($res = mysqli_fetch_array($query)) {
+
+                                            ?>
+                                                <option value="<?php echo $res['name'] ?>"><?php echo $res['name']; ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label for="inputEmail4">Select Material Size</label>
+                                        <select class="form-control" id="size_id" name="firms">
+                                            <?php
+                                            include 'config.php';
+
+                                            $selectquery = "select * from sizes";
+
+                                            $query = mysqli_query($conn, $selectquery);
+
+                                            $nums = mysqli_num_rows($query);
+
+                                            while ($res = mysqli_fetch_array($query)) {
+                                            ?>
+                                                <!-- <option value="0"></option> -->
+                                                <option value="<?php echo $res['name'] ?>"><?php echo $res['name']; ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Material Quantity</label>
+                                        <input type="number" id="qty" class="form-control" name="Material Quantity" placeholder="Material Quantity.">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">&nbsp;</label>
+                                        <center> <button type="button" id="modelAdd" name="modelAdd" class="btn btn-success">Add</button></center>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12 p-3">
+                                        <div class="card-header">
+                                            <h3 class="card-title"><b>Added Variations</b></h3>
+                                        </div>
+                                        <table id="modTableid" border="2" style="width:100%">
+                                            <thead></thead>
+                                            <th>sr.no</th>
+                                            <th>Colour</th>
+                                            <th>Size</th>
+                                            <th>QTY</th>
+                                            <th>Delete</th>
+                                            </thead>
+
+                                            <tbody id="modelTbody">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="card-body form-row float-right ">
+
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ended code for modal of adding variations -->
+                    <input type="hidden" id="rowid" value="1" />
+                    <input type="hidden" id="modrowid" name="modrowid" value="1" />
+                    <!-- model variation lenghth id -->
+                    <!-- <input type="hidden" id="mid" name="mid[]" value="1" /> -->
+
+                    <!-- <center> <button type="popmodel" id="popmodel" name="popmodel" class="btn btn-success">Submit All</button></center> -->
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function addRow() {
+            let prod_code = document.getElementById("prod_code").value;
+            let prod_name = document.getElementById("prod_name").value;
+            // let invoice = document.getElementById("invoice").value;
+            let prod_qty = parseInt(document.getElementById("prod_qty").value);
+            let purchase_price = parseInt(
+                document.getElementById("purchase_price").value
+            );
+            let sale_price = parseInt(document.getElementById("sale_price").value);
+            let total = prod_qty * purchase_price;
+            let rowid = parseInt(document.getElementById("rowid").value);
+            // let tableCount = document.getElementById("tableid");
+            // let tableRow=tableCount.rows.length;
+            // console.log(rowid)
+            $("#tableid").append(
+                "<tr id='row" +
+                rowid +
+                "'><input type='hidden' name='rowid[]' value='" + rowid + "'/><td>" +
+                rowid +
+                "</td><input type='hidden' id='pcode' name='prod_code[]' value='" + prod_code + "'/ ><td>" +
+                prod_code +
+                "</td><input type='hidden' name='prod_name[]' value='" + prod_name + "'/><td>" +
+                prod_name +
+                "</td><input type='hidden' name='prod_qty[]' value='" + prod_qty + "'/> <td>" +
+                prod_qty +
+                "</td><input type='hidden' name='purchase_price[]' value='" + purchase_price + "'/><td>" +
+                purchase_price +
+                "</td><input type='hidden' name='sale_price[]' value='" + sale_price + "'/><td>" +
+                sale_price +
+                "</td><td><button type='button' class='deleteBtn btn btn-success' onclick='addVariation(" +
+                rowid + "," + prod_qty +
+                ")'>Add Variation</button></td><input type='hidden' name='total[]' value='" + total + "'/><td>" +
+                total +
+                "</td><td><button type='button' class='deleteBtn btn btn-danger' onclick='rowDelete(" + rowid + ")' >Delete</button></td></tr>"
+            );
+            rowid = rowid + 1;
+            document.getElementById("rowid").value = rowid;
+            // }
+            let table = document.getElementById("tableid"),
+                sumVal = 0;
+            for (let i = 1; i < table.rows.length; i++) {
+                sumVal = sumVal + parseInt(table.rows[i].cells[7].innerHTML);
+            }
+            document.getElementById("allTotals").value = sumVal;
+        }
+
+        // add Variation Scripts----->>>>
+        let mid;
+        let prqty;
+
+        function addVariation(rowid, prod_qty) {
+            // alert(rowid);
+            $("#myModal").modal("show");
+            mid = rowid;
+            prqty = prod_qty;
+            var tbl = document.getElementById("modTableid");
+            var mcount = tbl.rows.length - 1;
+            // alert(mcount);
+            let miiid;
+            if (mcount > 0) {
+                for (i = 1; i <= mcount; i++) {
+                    // miiid is the id for every row added in variation
+                    miiid = tbl.rows[i].cells[0].innerHTML;
+                    // alert(miiid);
+
+                    // console.log(rowid + " == " + miiid);
+                    if (rowid == miiid) {
+                        // alert("show ");
+                        tbl.rows[i].style.display = "table-row";
+                    } else {
+                        tbl.rows[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        //  in model adding rows of variations on click add  
+        $(document).ready(function() {
+            // $('#forms').on('submit', function() {
+            //     let pcode= $('#pcode').val();
+            //     if(pcode==''){
+            //         alert('please fill');
+            //     }
+            // });
+
+            $("#submitAll").click(function() {
+                let colorIdj = $('#colorIdj').val();
+                if (colorIdj == null) {
+                    alert('please select the variations');
+                } else {
+                    $('#formid').submit();
+                }
+            });
+
+            $("#modelAdd").click(function() {
+                // alert(rowid);
+                let prod_qty = parseInt(prqty);
+                // let total = parseInt(document.getElementById("total").value);
+                let colorId = (document.getElementById("colour_id").value);
+                let sizeId = (document.getElementById("size_id").value);
+                let qty = parseInt(document.getElementById("qty").value);
+                let purchase_price = parseInt(document.getElementById("purchase_price").value);
+                let modrowid = parseInt(document.getElementById("modrowid").value);
+
+
+                let counts = 0;
+                let cnts = 0;
+
+                var nvr;
+                var tbl = document.getElementById("modelTbody");
+                var totalRow = tbl.rows.length;
+                for (i = 0; i < totalRow; i++) {
+                    nvr = tbl.rows[i].cells[0].innerHTML;
+                    if (mid == nvr) {
+                        counts++;
+                    }
+                }
+
+                cnts = counts + qty;
+                
+                let table = document.getElementById("modTableid"),
+                    qtysum = 1;
+                for (let t = 1; t < table.rows.length; t++) {
+                    qtysum = qtysum + parseInt(table.rows[t].cells[3].innerHTML);
+                }
+                document.getElementById("allqtytotals").value = qtysum;
+
+                console.log(qtysum);
+                console.log(prod_qty + " >= " + counts + " && " + prod_qty + " >= " + cnts + " && " + prod_qty + " >= " + qtysum);
+                // console.log(prod_qty + " >= " + qty);
+                if (prod_qty >= counts && prod_qty >= cnts && prod_qty >= qtysum) {
+                    for (let a = 1; a <= 1; a++) {
+                        // console.log(modrowid);
+                        $("#modelTbody").append(`
+            <tr id='row_id${modrowid}'>
+            <input type='hidden' id="midj" name='mid[]' value='${mid}'/>
+            <input type='hidden' id="colorIdj" name='colorId[]' value='${colorId}'/>
+            <input type='hidden' id="sizeIdj" name='sizeId[]' value='${sizeId}'/>
+            <input type='hidden' id="qtyj" name='qty[]' value='${qty}'/>
+            <td>${mid}</td>
+            <td>${colorId}</td>
+            <td>${sizeId}</td>
+            <td>${qty}</td>
+            <td><button type='button' id='deleteMRow' onclick='deleteModRow(${modrowid++})' class='deleteBtn btn btn-danger'>Delete</button></td>
+            </tr>
+        `)
+                    }
+                } else {
+                    alert("enter the quantity under product quantity");
+                }
+                counts = 0;
+                cnts = 0;
+                prod_qty = 0;
+                qty = 0;
+                $('#modrowid').val(modrowid);
+            });
+        });
+
+
+
+        function deleteModRow(modrowid) {
+            // alert('#row_id' + modrowid);
+            $('#row_id' + modrowid).remove();
+        }
+
+        const rowDelete = (rowid) => {
+            if (confirm("Are you sure you want to delete this row")) {
+                $('#row' + rowid).remove();
+            } else {
+                close("You pressed Cancel!");
+            } // var row = document.getElementById('rowid');
+        }
+
+        // const submitAll =()=>{
+        //     alert("shubham");
+        // }
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+// let prod_code = $('#prod_code').val();
+            // let prod_name = $('#prod_name').val();
+            // let prod_qty = $('#prod_qty').val();
+            // let purchase_price = $('#purchase_price').val();
+            // let sale_price = $('#sale_price').val();
+
+            // if (prod_code == "" || prod_name == "" || prod_qty == "" || purchase_price == "" || sale_price == "") {
+            //     $("#addRowError").show("fast");
+            // } else {
+            //     $("#addRowError").hide("fast");
+            //     $("#cardRow").show("slow");
+
+
+            $("#cardRow").hide();
+            $("#addRowError").hide();
+
+
+
+
+
+
+
+
+
+
+            <div class="card-body form-row ">
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail4">Product Name</label>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <input type="text" id="product_name" onchange="inpDrop()" list="dataListId" placeholder="Search for names.." title="Type in a name">
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <center> <button type="button" id="modelAdd" name="modelAdd" class="btn btn-success">+</button></center>
+                                    </div>
+                                    <datalist id="dataListId">
+                                        <?php
+                                        include 'config.php';
+
+                                        $selectquery = "select * from main_purchase";
+                                        $query = mysqli_query($conn, $selectquery);
+                                        while ($row1 = mysqli_fetch_array($query)) {
+                                            $main_p_id = $row1['id'];
+                                            $fid = $row1['fid'];
+                                            $invoice = $row1['invoice'];
+                                            $suppliers = $row1['suppliers'];
+
+                                            $selectquery1 = "select * from purchase_rows where purchase_row_id='$main_p_id'";
+                                            $query1 = mysqli_query($conn, $selectquery1);
+                                            while ($row2 = mysqli_fetch_array($query1)) {
+                                                $purchase_row_id = $row2['id'];
+                                                $prodCode = $row2['prod_code'];
+                                                $prod_name = $row2['prod_name'];
+                                                $purchase_price = $row2['purchase_price'];
+                                                $sale_price = $row2['sale_price'];
+
+                                                $selectquery2 = "select * from purchase_variations where purchase_row_id='$purchase_row_id'";
+                                                $query2 = mysqli_query($conn, $selectquery2);
+                                                while ($row3 = mysqli_fetch_array($query2)) {
+                                                    $colorId = $row3['colorId'];
+                                                    $sizeId = $row3['sizeId'];
+                                                    $qty = $row3['qty'];
+                                                    $varid = $row3['id'];
+
+                                        ?>
+                                                    <option value="<?php echo $prodCode ?> <?php echo $prod_name ?> <?php echo $colorId ?> <?php echo $sizeId ?> <?php echo $qty ?>"></option>
+                                        <?php
+                                                }
+                                            }
+                                        }
+
+                                        ?>
+                                    </datalist>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <?php
+if (mysqli_num_rows($query) > 0) {
+    while ($res = mysqli_fetch_array($query)) {
+?>
+        <tr>
+            <td><?php echo $res['id']; ?></td>
+            <td><?php echo $rowcount ?></td>
+            <td></td>
+            <td><input type="number" class="form-control" id="allTotals" name="allTotals[]" value="0" readonly="true"></td>
+            <td><?php echo $res['purchase_price']; ?></td>
+            <td><?php echo $res['sale_price']; ?></td>
+            <td><?php echo $res['total']; ?></td>
+            <td>
+                <center> <button type="button" class="btn btn-success" onclick="variModel(<?php echo $res['id']; ?>,<?php echo $res['prod_code']; ?>,<?php echo $res['prod_qty']; ?>,'<?php echo $res['prod_name']; ?>')">view</button></center>
+            </td>
+        </tr>
+<?php
+    }
+} else {
+    echo "0 results";
+}
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  $mainsql = "INSERT INTO solded_products(added_by,firm,invoice,memo,date_time,suppliers,allTotals)VALUES('$added_by','$fid','$invoice','$memo','$date','$suppliers','$allTotals')";
+    $result = mysqli_query($conn, $mainsql);
+    $lastid = $conn->insert_id;
+
+        for ($j = 0; $j < $rowArr2; $j++) {
+            // if ($rowid[$i] == $mid[$j]) {
+                $sqlb = "INSERT INTO solded_prod_var(purchase_row_id,prod_name,sale_price,qty,total)VALUES('$lastid','$prod_nameB[$j]','$sale_priceB[$j]','$qtyinputB[$j]','$totalB[$j]')";
+?>
+                <script>
+                    alert("Purchase added successfully");
+                    location.replace("add_purchase.php")
+                </script>
+<?php
+                $result = mysqli_query($conn, $sqlb);
+            // } else {
+            //     echo "fail";
+            // }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $mainsql = "INSERT INTO solded_products(added_by,firm,invoice,memo,date_time,suppliers,all_totals)VALUES('$added_by','$fid','$invoice','$memo','$date','$suppliers','$allTotals')";
+    $result = mysqli_query($conn, $mainsql);
+    $lastid = $conn->insert_id;
+
+    for ($j = 0; $j < $rowArr; $j++) {
+        // if ($rowid[$i] == $mid[$j]) {
+        $sqlb = "INSERT INTO solded_prod_var(purchase_row_id,prod_name,sale_prize,qty,total)VALUES('$lastid','$prod_nameB[$j]','$sale_priceB[$j]','$qtyinputB[$j]','$totalB[$j]')";
+?>
+        <script>
+            alert("Purchase added successfully");
+            location.replace("sales.php");
+        </script>
+<?php
+        $result = mysqli_query($conn, $sqlb);
+        // } else {
+        //     echo "fail";
+        // }
+    }
+}
+
+
+
+
+// for ($i = 0; $i < $rowArr; $i++) {
+//     $sql = "INSERT INTO purchase_rows(purchase_row_id,prod_code,prod_name,prod_qty,purchase_price,sale_price,total)VALUES('$purchase_row_id','$prod_code[$i]','$prod_name[$i]','$prod_qty[$i]','$purchase_price[$i]','$sale_price[$i]','$allTotals')";
+//     $result = mysqli_query($conn, $sql);
+//     $lastid = $conn->insert_id;
+// }
+
+
+
+I want to substract sqty(solded_prod_var) from qty(purchase_variations) and update it in qty column from purchase_variations..please help me in this prob.
+Thank you in advance..
+
+ill tried this..
+
+table name-purchase_variations:
+id|qty
+1 11
+2 12
+3 13
+
+table name-solded_prod_var:
+vid|sqty
+1 1
+2 2
+3 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+session_start();
+include("config.php");
+
+if (isset($_POST['sale'])) {
+    $added_by = $_SESSION['added_by'];
+    $fid = $_POST['fid'];
+    $invoice = $_POST['invoice'];
+    $memo = $_POST['memo'];
+    $date = $_POST['date'];
+    $suppliers = $_POST['suppliers'];
+    $allTotals = $_POST['allTotals'];
+
+    $prod_nameB = $_POST['prod_nameB'];
+    $sale_priceB = $_POST['sale_priceB'];
+    $qtyinputB = $_POST['qtyinputB'];
+    $totalB = $_POST['totalB'];
+
+    $vid = $_POST['vid'];
+    $rowArr = sizeof($prod_nameB);
+
+    $mainsql = "INSERT INTO solded_products(added_by,firm,invoice,memo,date_time,suppliers,all_totals)VALUES('$added_by','$fid','$invoice','$memo','$date','$suppliers','$allTotals')";
+    $result = mysqli_query($conn, $mainsql);
+    $lastid = $conn->insert_id;
+
+    for ($j = 0; $j < $rowArr; $j++) {
+        // if ($rowid[$i] == $mid[$j]) {
+        $sqlb = "INSERT INTO solded_prod_var(vid,purchase_row_id,prod_name,sale_prize,sqty,total)VALUES('$vid[$j]','$lastid','$prod_nameB[$j]','$sale_priceB[$j]','$qtyinputB[$j]','$totalB[$j]')";
+?>
+        <!-- <script>
+            alert("Purchase added successfully");
+            location.replace("sales.php");
+        </script> -->
+<?php
+        $result = mysqli_query($conn, $sqlb);
+
+       echo $qtyupdt = "SELECT tb.id, (tb.qty - tbl.sqty) n FROM purchase_variations tb LEFT JOIN solded_prod_var tbl ON (tbl.vid = tb.id)";
+        echo $result = mysqli_query($conn, $qtyupdt); 
+        
+        echo $upd = "UPDATE purchase_variations SET qty = n WHERE id = '$vid[$j]' LIMIT 1";
+        echo $result = mysqli_query($conn, $upd);
+
+        
+        // } else {
+        //     echo "fail";
+        // }
+    }
+
+    $qtyupdt = "SELECT tb.id, (tb.qty - tbl.sqty) n FROM purchase_variations tb LEFT JOIN solded_prod_var tbl ON (tbl.vid = tb.id)";
+$result = mysqli_query($conn, $qtyupdt); 
+
+foreach ($result as $row){
+    $upd = "UPDATE purchase_variations SET qty = 1 WHERE id = 1 LIMIT 1";
+    $result = mysqli_query($conn, $upd);
+}
+}
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+purchaseAdd.php----------->
+
+ $mainsql = "INSERT INTO main_purchase(added_by,fid,invoice,date_time,suppliers)VALUES('$added_by','$fid','$invoice','$date','$suppliers')";
+    $result = mysqli_query($conn, $mainsql);
+    $purchase_row_id = $conn->insert_id;
+
+    for ($i = 0; $i < $rowArr; $i++) {
+        $sql = "INSERT INTO purchase_rows(purchase_row_id,prod_code,prod_name,prod_qty,purchase_price,sale_price,total)VALUES('$purchase_row_id','$prod_code[$i]','$prod_name[$i]','$prod_qty[$i]','$purchase_price[$i]','$sale_price[$i]','$allTotals')";
+        $result = mysqli_query($conn, $sql);
+        $lastid = $conn->insert_id;
+
+        for ($j = 0; $j < $rowArr2; $j++) {
+            if ($rowid[$i] == $mid[$j]) {
+                $sqlb = "INSERT INTO purchase_variations(purchase_row_id,colorId,sizeId,qty)VALUES('$lastid','$colorId[$j]','$sizeId[$j]','$qty[$j]')";
+?>
+                <script>
+                    alert("Purchase added successfully");
+                    location.replace("add_purchase.php")
+                </script>
+<?php
+                $result = mysqli_query($conn, $sqlb);
+            } else {
+                echo "fail";
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     $sql = "INSERT INTO admin (added_by,fname,pname,address,contac,gst,file1,bank_name,ac_no,ifsc,branch,userid,password,email)
+    VALUES ('$added_by','$fname','$pname','$address','$contac','$gst','$file1','$bank_name','$ac_no','$ifsc','$branch','$userid','$password','$email')";
+
+    $result = mysqli_query($conn, $sql);
+   
+    if ($result) {
+?>
+        <script>
+            alert("user added successfully");
+            location.replace("firms.php")
+        </script>
+<?php
+    } else {
+        echo "you have entered wrong email or passsword";
+    }
+
+
+    if (move_uploaded_file($file_tmp, "upload-images/" . $file_name)) {
+        echo "success";
+    } else {
+        echo "error";
+    }
+
+
+// $getVarData = "SELECT * FROM `purchase_variations` WHERE sizeId='$sizeId' AND colorId='$colorId' AND qty='$qty'";
+    // $resQ = mysqli_query($conn, $getVarData);
+    // while ($res = mysqli_fetch_array($resQ)) {
+    //     $colorE = $res['colorId'];
+    //     $sizeE = $res['sizeId'];
+    //     $qtyE = $res['qty'];
+    //     $idE = $res['id'];
+    // }
+
+
+    //     $getpvdata = "SELECT * FROM `purchase_variations`";
+    // $pvresult = mysqli_query($conn, $getpvdata);
+    // while ($pvres = mysqli_fetch_array($pvresult)) {
+    //     $variationQty = $pvres['qty'];
+    //     $variationId = $pvres['id'];
+    // }
+
+    // $subs=
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    while ($pvres = mysqli_fetch_array($subGetResult)) {
+                $rowQty = $pvres['qty'];
+                $rowId = $pvres['id'];
+                $subRowcount = mysqli_num_rows($subGetResult);
+            }
+            if ($subRowcount == 0) {
+                $rowSql = "INSERT INTO purchase_rows(purchase_row_id,prod_code,prod_name,prod_qty,purchase_price,sale_price,total)VALUES('$purchase_row_id','$prod_code[$r]','$prod_name[$r]','$prod_qty[$r]','$purchase_price[$r]','$sale_price[$r]','$allTotals')";
+                $rowResult = mysqli_query($conn, $rowSql);
+                $lastid = $conn->insert_id;
+            } else {
+                for ($v = 0; $v < $rowArr; $v++) {
+                    $varget = "SELECT * FROM `purchase_variations` WHERE colorId='$colorId[$v]' AND sizeId='$sizeId[$v]' AND qty='$qty[$v]'";
+                    $vargetResult = mysqli_query($conn, $varget);
+                    while ($pvres = mysqli_fetch_array($vargetResult)) {
+                        $variationQty = $pvres['qty'];
+                        $variationId = $pvres['id'];
+                        $variationRowcount = mysqli_num_rows($vargetResult);
+                    }
+                    if ($variationRowcount == 0) {
+                        $varSqlb = "INSERT INTO purchase_variations(purchase_row_id,colorId,sizeId,qty)VALUES('$lastid','$colorId[$v]','$sizeId[$v]','$qty[$v]')";
+                        $lastid2 = $conn->insert_id;
+                        $varResult = mysqli_query($conn, $varSqlb);
+                    } else {
+                        $subs = $variationQty + $prod_qty[$v];
+                        $updates = "UPDATE `purchase_variations` SET `qty`=$subs WHERE id='$variationId[$v]'";
+                        $updresult = mysqli_query($conn, $updates);
+                    }
+                }
+            }
+
+
+
+
+
+ $mainsql = "INSERT INTO main_purchase(added_by,fid,invoice,date_time,suppliers)VALUES('$added_by','$fid','$invoice','$date','$suppliers')";
+        $resultMain = mysqli_query($conn, $mainsql);
+        $purchase_row_id = $conn->insert_id;
+
+        for ($i = 0; $i < $rowArr; $i++) {
+            $sql = "INSERT INTO purchase_rows(purchase_row_id,prod_code,prod_name,prod_qty,purchase_price,sale_price,total)VALUES('$purchase_row_id','$prod_code[$i]','$prod_name[$i]','$prod_qty[$i]','$purchase_price[$i]','$sale_price[$i]','$allTotals')";
+            $resultMain2 = mysqli_query($conn, $sql);
+            $lastid = $conn->insert_id;
+
+            for ($j = 0; $j < $rowArr2; $j++) {
+                if ($rowid[$i] == $mid[$j]) {
+                    $sqlb = "INSERT INTO purchase_variations(purchase_row_id,colorId,sizeId,qty)VALUES('$lastid','$colorId[$j]','$sizeId[$j]','$qty[$j]')";
+                    $resultMain3 = mysqli_query($conn, $sqlb);
+                } else {
+                    echo "fail";
+                }
+            }
+        }

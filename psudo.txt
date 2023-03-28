@@ -1,0 +1,104 @@
+<html>
+
+<head>
+    <style>
+        p.inline {
+            display: inline-block;
+        }
+
+        span {
+            font-size: 13px;
+        }
+    </style>
+    <style type="text/css" media="print">
+        @page {
+            size: auto;
+            /* auto is the initial value */
+            margin: 0mm;
+            /* this affects the margin in the printer settings */
+
+        }
+    </style>
+
+    <?php
+    include("scripts.php");
+    ?>
+</head>
+
+<body>
+    <!-- onload="window.print();" -->
+    <div style="margin-left: 5%">
+
+    </div>
+</body>
+
+</html>
+
+<table id="example1" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Product Code</th>
+            <th>Colour</th>
+            <th>Size</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <?php
+        include 'barcode128.php';
+        // $product_id = 'hatagaleknowsit';
+
+        include 'config.php';
+
+        $Mainid = $_GET['Mainid'];
+        $selectquery = "select * from purchase_rows where purchase_row_id='$Mainid'";
+        $query = mysqli_query($conn, $selectquery);
+        while ($res = mysqli_fetch_array($query)) {
+            $rowId = $res['id'] . "</br>";
+            $prod_Qty = $res['prod_qty'] . "</br>";
+            $prod_name = $res['prod_name'] . "</br>";
+
+            // echo $prod_name;
+        ?>
+            <!-- <?php echo $rowId; ?>
+    <?php echo $prod_Qty; ?>
+    <?php echo $prod_name; ?> -->
+
+            <?php
+
+            // echo $sizeRowId = sizeof($prod_name) . "</br>";
+            // for ($v = 0; $v < $sizeRowId; $v++) {
+            $subGetVar = "SELECT * FROM `purchase_variations` WHERE purchase_row_id='$rowId'";
+
+            $subGetVarResult = mysqli_query($conn, $subGetVar);
+            $subVarCount = mysqli_num_rows($subGetVarResult) . "</br>";
+            while ($resvar = mysqli_fetch_array($subGetVarResult)) {
+                $lastidRowvar = $resvar['id'];
+                echo $variationQty = $resvar['qty'];
+                // for ($i = 0; $i < $variationQty[0]; $i++) {
+            ?>
+                <!-- <h1> <?php echo $prod_name; ?></h1> -->
+                <tr>
+                    <td><?php echo $prod_name ?></td>
+                    <td><?php echo $sale_prize ?></td>
+                    <td><input type='number' value="<?php echo $variationQty ?>"></td>
+                    <td><?php echo $prod_name ?></td>
+                    <td><?php echo $prod_name ?></td>
+                    <td><?php echo $prod_name ?></td>
+                    <td><?php echo $prod_name ?></td>
+
+                </tr>
+        <?php
+
+                // echo "<p class='inline'>" . bar128(stripcslashes($lastidRowvar)) . "</p></br>";
+                // }
+            }
+        }
+
+        ?>
+    </tbody>
+</table>
